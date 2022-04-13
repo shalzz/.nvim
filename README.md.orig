@@ -5,12 +5,16 @@ My Neovim dot files.
 
 Just run the following commands via terminal to get perfectly set up:
 
+<<<<<<< HEAD
+Kickstart targets *only* the latest stable neovim release (0.7) and the nightly.
+=======
 ```bash
 $ cd ~/
 $ git clone https://github.com/shalzz/.nvim.git
 $ cd "${HOME}/.nvim"
 $ make install-nvim  # for Neovim
 ```
+>>>>>>> 7b3c301 (Add my personalizations)
 
 ## packer.nvim
 The vim dot files make use of the excellent [packer.nvim](https://github.com/wbthomason/packer.nvim) Vim plugin manager.
