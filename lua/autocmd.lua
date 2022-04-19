@@ -1,9 +1,6 @@
 local au = require('au')
 
 pcall(vim.cmd, [[
-" Set Solidity Filetype
-autocmd BufNewFile,BufRead *.sol setf solidity
-
 " When open a file, always jump to the last cursor position
 autocmd BufReadPost *
   \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'

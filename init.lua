@@ -151,8 +151,12 @@ o.compatible        = false     -- disable vi compatiblity
 o.spell             = true      -- enable spellcheck
 o.spelllang         ='en'
 o.laststatus        = 3         -- global statusline
-vim.g.python3_host_prog = '/usr/bin/python3'
-vim.g.solarized_italics = 0
+
+vim.g.do_filetype_lua    = 1    -- load filetypes.lua
+vim.g.did_load_filetypes = 0    -- don't load filtypes.vim
+vim.g.python3_host_prog  = '/usr/bin/python3'
+vim.g.solarized_italics  = 0
+
 --Set colorscheme
 pcall(vim.cmd, [[colorscheme solarized]])
 
