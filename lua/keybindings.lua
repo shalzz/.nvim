@@ -44,22 +44,18 @@ vim.keymap.set({'n', 'v'}, "L", "$")
 -- <leader>y|Y yank into clipboard/OSCyank
 vim.keymap.set({'n', 'v'}, '<leader>v', '"+p')
 vim.keymap.set({'n', 'v'}, '<leader>V', '"+P')
-vim.keymap.set({'n', 'v'}, '<leader>c', '"*p')
-vim.keymap.set({'n', 'v'}, '<leader>C', '"*P')
+vim.keymap.set({'n', 'v'}, '<leader>c', '""y<cmd>let @+=@0<CR>')
+vim.keymap.set({'n', 'v'}, '<leader>C', '""Y<cmd>let @+=@0<CR>')
 vim.keymap.set({'n', 'v'}, '<leader>p', '"0p')
 vim.keymap.set({'n', 'v'}, '<leader>P', '"0P')
 vim.keymap.set({'n', 'v'}, '<leader>y', '<cmd>let @+=@0<CR>')
 vim.keymap.set({'n', 'v'}, '<leader>Y', ':OSCYank<CR>')
 
-
 -- Overloads for 'd|c' that don't pollute the unnamed registers
 -- In visual-select mode 'd=delete, x=cut (unchanged)'
--- vim.keymap.set('v', 'd',          '"_d',     )
--- vim.keymap.set('n', '<leader>d',  '"_d',     )
--- vim.keymap.set('n', '<leader>D',  '"_D',     )
--- vim.keymap.set('n', '<leader>c',  '"_c',     )
--- vim.keymap.set('n', '<leader>C',  '"_C',     )
--- vim.keymap.set('v', '<leader>c',  '"_c',     )
+vim.keymap.set('v', 'd',          '"x')
+vim.keymap.set('n', '<leader>d',  '"_d')
+vim.keymap.set('n', '<leader>D',  '"_D')
 
 -- Map `Y` to copy to end of line
 -- conistent with the behaviour of `C` and `D`
