@@ -17,6 +17,13 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
+vim.api.nvim_create_autocmd('BufWritePost', {
+  callback = function()
+    require('lint').try_lint()
+  end,
+  pattern = '<buffer>',
+})
+
 -- Required due to https://github.com/neovim/neovim/issues/9422
 au.group('NewlineNoAutoComments', function(g)
   g.BufEnter = { '*', "setlocal formatoptions-=o" }

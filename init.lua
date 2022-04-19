@@ -31,6 +31,7 @@ require('packer').startup(function(use)
   use 'saadparwaiz1/cmp_luasnip'
   use 'L3MON4D3/LuaSnip' -- Snippets plugin
   use 'andersevenrud/cmp-tmux' -- Tmux as completion source
+  use 'mfussenegger/nvim-lint' -- Lints support with LSP
    -- key bindings cheatsheet
   use { 'folke/which-key.nvim',
       config = "require('which_key')",
@@ -469,6 +470,16 @@ cmp.setup {
     { name = 'luasnip' },
     { name = 'tmux' },
   },
+}
+
+require('lint').linters_by_ft = {
+  typescript        = {'eslint'},
+  typescriptreact   = {'eslint'},
+  javascript        = {'eslint'},
+  jsx               = {'eslint'},
+  c                 = {'clangtidy', 'cppcheck'},
+  cpp               = {'clangtidy', 'cppcheck'},
+  markdown          = {'vale'}
 }
 
 require('autocmd')
