@@ -1,6 +1,9 @@
 local au = require('au')
 
 pcall(vim.cmd, [[
+" Set vim to save the file on focus out.
+au FocusLost * :wa
+
 " When open a file, always jump to the last cursor position
 autocmd BufReadPost *
   \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
