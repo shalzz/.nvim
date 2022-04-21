@@ -296,7 +296,7 @@ end)
 vim.keymap.set('n', '<leader>fl', function() require('telescope.builtin').oldfiles() end)
 vim.keymap.set('n', '<leader>f?', function() require('telescope.builtin').builtin() end)
 
-vim.keymap.set('n', '<leader>fzn', "<Cmd>ZkNotes { sort = { 'modified' } }<CR>")
+vim.keymap.set('n', '<leader>fzz', "<Cmd>ZkNotes { sort = { 'modified' } }<CR>")
 vim.keymap.set('n', '<leader>fzb', "<Cmd>ZkBacklinks<CR>")
 vim.keymap.set('n', '<leader>fzl', "<Cmd>ZkLinks<CR>")
 vim.keymap.set('n', '<leader>fzm', "<Cmd>'<,'>ZkMatch<CR>")
@@ -510,7 +510,11 @@ require("zk").setup({
     },
   },
 })
-vim.keymap.set("n", "zn", "<Cmd>ZkNew { title = vim.fn.input('Title: ') }<CR>", {silent = false})
+
+local dir = vim.fn.getenv('ZK_NOTEBOOK_DIR')..'/journal/daily'
+vim.keymap.set("n", "<leader>zn", "<Cmd>ZkNew { title = vim.fn.input('Title: ') }<CR>", {silent = false})
+vim.keymap.set("n", "<leader>zjy", string.format("<Cmd>ZkNew { dir = '%s', date = 'yesterday' }<CR>", dir), {silent = false})
+vim.keymap.set("n", "<leader>zjt", string.format("<Cmd>ZkNew { dir = '%s' }<CR>", dir), {silent = false})
 
 require('autocmd')
 require('keybindings')

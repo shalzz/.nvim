@@ -168,19 +168,24 @@ local keymaps = {
         l = 'old files',
         z = {
             name = '+zettlekasten (zk)',
-            n = 'notes',
+            z = 'notes',
             b = 'backlines to current note',
             l = 'links in current note',
             m = 'match last visual selection',
             t = 'tags',
         }
     },
-  },
-  ['z'] = {
-        name = '+zettlekasten (zk)',
-        n   = 'create new note',
-        vt  = 'create new note with selection as title',
-        vc  = 'create new note with selection as content',
+    ['z'] = {
+            name = '+zettlekasten (zk)',
+            n   = 'create new note',
+            vt  = 'create new note with selection as title',
+            vc  = 'create new note with selection as content',
+            j = {
+                name = "+journal",
+                y = "create an entry for yesterday",
+                t = "create an entry for today"
+            }
+    },
   },
   ['g'] = {
         b = 'block comment (motion)',

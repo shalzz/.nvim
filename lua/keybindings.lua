@@ -53,9 +53,9 @@ vim.keymap.set({'n', 'v'}, '<leader>Y', ':OSCYank<CR>')
 
 -- Overloads for 'd|c' that don't pollute the unnamed registers
 -- In visual-select mode 'd=delete, x=cut (unchanged)'
-vim.keymap.set('v', 'd',          '"x')
-vim.keymap.set('n', '<leader>d',  '"_d')
-vim.keymap.set('n', '<leader>D',  '"_D')
+-- vim.keymap.set('v', 'd',          '"_x')
+-- vim.keymap.set('n', '<leader>d',  '"_d')
+-- vim.keymap.set('n', '<leader>D',  '"_D')
 
 -- Map `Y` to copy to end of line
 -- conistent with the behaviour of `C` and `D`
