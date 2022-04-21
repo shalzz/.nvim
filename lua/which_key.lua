@@ -178,8 +178,11 @@ local keymaps = {
     ['z'] = {
             name = '+zettlekasten (zk)',
             n   = 'create new note',
-            vt  = 'create new note with selection as title',
-            vc  = 'create new note with selection as content',
+            v = {
+                name = "+visual",
+                vt  = 'create new note with selection as title',
+                vc  = 'create new note with selection as content',
+            },
             j = {
                 name = "+journal",
                 y = "create an entry for yesterday",
