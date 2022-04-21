@@ -40,6 +40,7 @@ require('packer').startup(function(use)
   }
   use 'tpope/vim-sleuth' -- Auto set file indents/tabs length, respects editorconfig
   use 'mickael-menu/zk-nvim'
+  use 'ixru/nvim-markdown'
 end)
 
 
@@ -153,6 +154,7 @@ o.compatible        = false     -- disable vi compatiblity
 o.spell             = true      -- enable spellcheck
 o.spelllang         ='en'
 o.laststatus        = 3         -- global statusline
+o.conceallevel      = 2         -- Enable conceal by default (used mainly for markdown)
 
 vim.g.do_filetype_lua    = 1    -- load filetypes.lua
 vim.g.did_load_filetypes = 0    -- don't load filtypes.vim
@@ -307,6 +309,7 @@ vim.keymap.set('n', '<leader>fzt', "<Cmd>ZkTags<CR>")
 require('nvim-treesitter.configs').setup {
   highlight = {
     enable = true, -- false will disable the whole extension
+    additional_vim_regex_highlighting = { "markdown" }
   },
   incremental_selection = {
     enable = true,
