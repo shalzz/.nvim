@@ -39,6 +39,7 @@ require('packer').startup(function(use)
       silent = true
   }
   use 'tpope/vim-sleuth' -- Auto set file indents/tabs length, respects editorconfig
+  use 'mickael-menu/zk-nvim'
 end)
 
 
@@ -131,8 +132,8 @@ o.foldenable        = true      -- enable folding
 o.foldlevelstart    = 10        -- open most folds by default
 o.foldnestmax       = 10        -- 10 nested fold max
 o.foldmethod        = 'indent'  -- fold based on indent level
-o.undofile          = true --Save undo history
-o.undodir           = '~/.vimdid'
+o.undofile          = true      --Save undo history
+o.undodir           = vim.fn.getenv('HOME')..'/.vimdid'
 o.autochdir         = false     -- do not change dir when opening a file
 
 o.magic             = true      --  use 'magic' chars in search patterns
@@ -294,6 +295,12 @@ vim.keymap.set('n', '<leader>fo', function()
 end)
 vim.keymap.set('n', '<leader>fl', function() require('telescope.builtin').oldfiles() end)
 vim.keymap.set('n', '<leader>f?', function() require('telescope.builtin').builtin() end)
+
+vim.keymap.set('n', '<leader>fzn', "<Cmd>ZkNotes { sort = { 'modified' } }<CR>")
+vim.keymap.set('n', '<leader>fzb', "<Cmd>ZkBacklinks<CR>")
+vim.keymap.set('n', '<leader>fzl', "<Cmd>ZkLinks<CR>")
+vim.keymap.set('n', '<leader>fzm', "<Cmd>'<,'>ZkMatch<CR>")
+vim.keymap.set('n', '<leader>fzt', "<Cmd>ZkTags<CR>")
 
 -- Treesitter configuration
 -- Parsers must be installed manually via :TSInstall
@@ -481,6 +488,29 @@ require('lint').linters_by_ft = {
   cpp               = {'clangtidy', 'cppcheck'},
   markdown          = {'vale'}
 }
+
+require("zk").setup({
+  -- can be "telescope", "fzf" or "select" (`vim.ui.select`)
+  -- it's recommended to use "telescope" or "fzf"
+  picker = "telescope",
+
+  lsp = {
+    -- `config` is passed to `vim.lsp.start_client(config)`
+    config = {
+      cmd = { "zk", "lsp" },
+      name = "zk",
+      -- on_attach = ...
+      -- etc, see `:h vim.lsp.start_client()`
+    },
+
+    -- automatically attach buffers in a zk notebook that match the given filetypes
+    auto_attach = {
+      enabled = true,
+      filetypes = { "markdown" },
+    },
+  },
+})
+vim.keymap.set("n", "zn", "<Cmd>ZkNew { title = vim.fn.input('Title: ') }<CR>", {silent = false})
 
 require('autocmd')
 require('keybindings')

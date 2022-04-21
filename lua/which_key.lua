@@ -166,7 +166,21 @@ local keymaps = {
         d = 'grep string under cursor (project)',
         g = 'live grep (project)',
         l = 'old files',
+        z = {
+            name = '+zettlekasten (zk)',
+            n = 'notes',
+            b = 'backlines to current note',
+            l = 'links in current note',
+            m = 'match last visual selection',
+            t = 'tags',
+        }
     },
+  },
+  ['z'] = {
+        name = '+zettlekasten (zk)',
+        n   = 'create new note',
+        vt  = 'create new note with selection as title',
+        vc  = 'create new note with selection as content',
   },
   ['g'] = {
         b = 'block comment (motion)',
