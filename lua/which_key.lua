@@ -168,7 +168,7 @@ local keymaps = {
         l = 'old files',
         z = {
             name = '+zettlekasten (zk)',
-            z = 'non-journal notes',
+            z = 'notes',
             j = 'daily journal notes',
             b = 'backlines to current note',
             l = 'links in current note',
@@ -178,9 +178,9 @@ local keymaps = {
     },
     ['z'] = {
             name = '+zettlekasten (zk)',
-            n   = 'create new note',
-            v = {
-                name = "+visual",
+            n = {
+                name = "+notes",
+                n  = 'create new note',
                 t  = 'create new note with selection as title',
                 c  = 'create new note with selection as content',
             },
