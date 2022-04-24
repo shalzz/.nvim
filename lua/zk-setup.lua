@@ -2,7 +2,10 @@ if not pcall(require, "zk") then
   return
 end
 
-require("zk").setup({
+local zk = require("zk")
+local commands = require("zk.commands")
+
+zk.setup({
   -- can be "telescope", "fzf" or "select" (`vim.ui.select`)
   -- it's recommended to use "telescope" or "fzf"
   picker = "telescope",
@@ -23,6 +26,11 @@ require("zk").setup({
     },
   },
 })
+
+commands.add("ZkOrphans", function(options)
+  options = vim.tbl_extend("force", { orphan = true }, options or {})
+  zk.edit(options, { title = "Zk Orphans" })
+end)
 
 local dir = vim.fn.getenv('ZK_NOTEBOOK_DIR')..'/journal/daily'
 vim.keymap.set("n", "<leader>znn", "<Cmd>ZkNew { title = vim.fn.input('Title: ') }<CR>", {silent = false})

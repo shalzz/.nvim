@@ -300,6 +300,7 @@ vim.keymap.set('n', '<leader>f?', function() require('telescope.builtin').builti
 
 vim.keymap.set('n', '<leader>fzz', "<Cmd>ZkNotes { sort = { 'modified' }, excludeHrefs = { 'journal/daily' } }<CR>")
 vim.keymap.set('n', '<leader>fzj', "<Cmd>ZkNotes { sort = { 'modified' }, hrefs = { 'journal/daily' } }<CR>")
+vim.keymap.set('n', '<leader>fzo', "<Cmd>ZkOrphans { excludeHrefs = { 'journal/daily' } }<CR>")
 vim.keymap.set('n', '<leader>fzb', "<Cmd>ZkBacklinks<CR>")
 vim.keymap.set('n', '<leader>fzl', "<Cmd>ZkLinks<CR>")
 vim.keymap.set('n', '<leader>fzm', "<Cmd>'<,'>ZkMatch<CR>")
@@ -362,6 +363,20 @@ require('nvim-treesitter.configs').setup {
     },
   },
 }
+
+if pcall(require, "nvim-treesitter.parsers") then
+  -- install with ':TSInstallSync markdown'
+  require "nvim-treesitter.parsers".get_parser_configs().markdown = {
+    install_info = {
+      url = "https://github.com/MDeiml/tree-sitter-markdown",
+      files = { "src/parser.c", "src/scanner.cc" },
+      -- makes treesitter ignore the 'lockfile.json' revision
+      -- won't compile without this like as it tries the default
+      -- markdown revision from 'MDeiml/tree-sitter-markdown'
+      -- revision = "main",
+    }
+  }
+end
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
