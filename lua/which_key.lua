@@ -170,6 +170,7 @@ local keymaps = {
             name = '+zettlekasten (zk)',
             z = 'notes',
             j = 'daily journal notes',
+            o = "orphane notes",
             b = 'backlines to current note',
             l = 'links in current note',
             m = 'match last visual selection',
