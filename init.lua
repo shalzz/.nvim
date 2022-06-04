@@ -446,6 +446,29 @@ for _, lsp in ipairs(servers) do
   }
 end
 
+-- Setup ltex
+lspconfig.ltex.setup {
+  filetypes = { 'latex', 'tex', 'bib', 'markdown' },
+  settings = {
+    ltex = {
+      enabled = { 'latex', 'tex', 'bib', 'markdown' },
+      language = 'en',
+      diagnosticSeverity = 'information',
+      setenceCacheSize = 2000,
+      additionalRules = {
+        enablePickyRules = true,
+        motherTongue = 'en',
+        languageModel = '~/.languagemodels',
+      },
+      trace = { server = 'verbose' },
+      dictionary = { ["en"] = {":~/.config/nvim/spell/en.utf-8.add"} },
+      -- disabledRules = { ['en-GB'] = { GB_SPELLING_RULE } },
+      disabledRules = { ['en'] = { "EN_QUOTES" } },
+      hiddenFalsePositives = {},
+    },
+  },
+}
+
 -- Example custom server
 -- Make runtime files discoverable to the server
 local runtime_path = vim.split(package.path, ';')
