@@ -40,7 +40,6 @@ require('packer').startup(function(use)
   }
   use 'tpope/vim-sleuth' -- Auto set file indents/tabs length, respects editorconfig
   use 'mickael-menu/zk-nvim'
-  use 'ixru/nvim-markdown'
 end)
 
 
