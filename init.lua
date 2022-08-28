@@ -309,6 +309,25 @@ vim.keymap.set('n', '<leader>fzt', "<Cmd>ZkTags<CR>")
 -- Treesitter configuration
 -- Parsers must be installed manually via :TSInstall
 require('nvim-treesitter.configs').setup {
+  ensure_installed = {
+      "bash",
+      "c",
+      "cpp",
+      "go",
+      "javascript",
+      "typescript",
+      "json",
+      "jsonc",
+      "jsdoc",
+      "lua",
+      "python",
+      "rust",
+      "html",
+      "css",
+      "toml",
+      "markdown",
+      "markdown_inline",
+  },
   highlight = {
     enable = true, -- false will disable the whole extension
     additional_vim_regex_highlighting = { "markdown" }
@@ -391,17 +410,6 @@ if pcall(require, "nvim-treesitter.parsers") then
       requires_generate_from_grammar = true,
     },
     filetype = 'solidity'
-  }
-  -- install with ':TSInstallSync markdown'
-  require "nvim-treesitter.parsers".get_parser_configs().markdown = {
-    install_info = {
-      url = "https://github.com/MDeiml/tree-sitter-markdown",
-      files = { "src/parser.c", "src/scanner.cc" },
-      -- makes treesitter ignore the 'lockfile.json' revision
-      -- won't compile without this like as it tries the default
-      -- markdown revision from 'MDeiml/tree-sitter-markdown'
-      -- revision = "main",
-    }
   }
 end
 
