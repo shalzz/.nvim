@@ -155,8 +155,6 @@ o.spelllang         ='en'
 o.laststatus        = 3         -- global statusline
 o.conceallevel      = 2         -- Enable conceal by default (used mainly for markdown)
 
-vim.g.do_filetype_lua    = 1    -- load filetypes.lua
-vim.g.did_load_filetypes = 0    -- don't load filtypes.vim
 vim.g.python3_host_prog  = '/usr/bin/python3'
 vim.g.solarized_italics  = 0
 
