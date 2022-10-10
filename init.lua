@@ -40,6 +40,8 @@ require('packer').startup(function(use)
   }
   use 'tpope/vim-sleuth' -- Auto set file indents/tabs length, respects editorconfig
   use 'mickael-menu/zk-nvim'
+  use 'tpope/vim-repeat'
+  use 'ggandor/leap.nvim'
 end)
 
 
@@ -562,6 +564,8 @@ require('lint').linters_by_ft = {
   cpp               = {'clangtidy', 'cppcheck'},
   markdown          = {'vale'}
 }
+
+require('leap').set_default_keymaps()
 
 require('autocmd')
 require('keybindings')
