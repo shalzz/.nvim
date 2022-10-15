@@ -455,10 +455,10 @@ end
 
 -- Setup ltex
 lspconfig.ltex.setup {
-  filetypes = { 'latex', 'tex', 'bib', 'markdown' },
+  filetypes = { 'latex', 'tex', 'bib' },
   settings = {
     ltex = {
-      enabled = { 'latex', 'tex', 'bib', 'markdown' },
+      enabled = { 'latex', 'tex', 'bib' },
       language = 'en',
       diagnosticSeverity = 'information',
       setenceCacheSize = 2000,
