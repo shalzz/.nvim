@@ -442,7 +442,7 @@ end
 
 -- nvim-cmp supports additional completion capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 -- Enable the following language servers
 local servers = { 'clangd', 'rust_analyzer', 'tsserver', 'yamlls' }
@@ -455,7 +455,8 @@ end
 
 -- Setup ltex
 lspconfig.ltex.setup {
-  filetypes = { 'latex', 'tex', 'bib', 'markdown' },
+  filetypes = { 'latex', 'tex', 'bib' },
+  -- filetypes = { 'latex', 'tex', 'bib', 'markdown' },
   settings = {
     ltex = {
       enabled = { 'latex', 'tex', 'bib', 'markdown' },
@@ -483,7 +484,7 @@ table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
 
-lspconfig.sumneko_lua.setup {
+lspconfig.lua_ls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
   settings = {
