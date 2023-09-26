@@ -475,7 +475,6 @@ lspconfig.ltex.setup {
       additionalRules = {
         enablePickyRules = true,
         motherTongue = 'en',
-        languageModel = '~/.languagemodels',
       },
       trace = { server = 'verbose' },
       dictionary = { ["en"] = {":~/.config/nvim/spell/en.utf-8.add"} },
