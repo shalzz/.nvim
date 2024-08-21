@@ -70,7 +70,7 @@ o.fileencoding      = 'utf-8'
 o.backspace         = { 'eol', 'start', 'indent' }
 o.matchpairs        = { '(:)', '{:}', '[:]', '<:>' }
 
-if tonumber(vim.fn.system("grep -c *dark /home/shalzz/.config/alacritty/alacritty.yml")) > 0 then
+if tonumber(vim.fn.system("grep -c 002B36 /home/shalzz/.config/alacritty/alacritty.toml")) > 0 then
     o.background = 'dark'
 else
     o.background = 'light'
@@ -319,24 +319,35 @@ vim.keymap.set('n', '<leader>fzt', "<Cmd>ZkTags<CR>")
 -- Parsers must be installed manually via :TSInstall
 require('nvim-treesitter.configs').setup {
   ensure_installed = {
-      "bash",
-      "c",
-      "cpp",
-      "go",
-      "javascript",
-      "typescript",
-      "json",
-      "jsonc",
-      "jsdoc",
-      "lua",
-      "python",
-      "rust",
-      "html",
-      "css",
-      "toml",
-      "markdown",
-      "markdown_inline",
+    "bash",
+    "c",
+    "cpp",
+    "go",
+    "javascript",
+    "typescript",
+    "json",
+    "jsonc",
+    "jsdoc",
+    "lua",
+    "python",
+    "rust",
+    "html",
+    "css",
+    "toml",
+    "markdown",
+    "markdown_inline",
+    "solidity"
   },
+  -- Install parsers synchronously (only applied to `ensure_installed`)
+  sync_install = false,
+
+  -- Automatically install missing parsers when entering buffer
+  -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
+  auto_install = false,
+
+  -- List of parsers to ignore installing (or "all")
+  ignore_install = {},
+  modules = {},
   highlight = {
     enable = true, -- false will disable the whole extension
     additional_vim_regex_highlighting = { "markdown" }
@@ -392,36 +403,6 @@ require('nvim-treesitter.configs').setup {
   },
 }
 
---[[
-  https://github.com/nvim-treesitter/nvim-treesitter/issues/1168
-  ** use lowercase 'solidity':
-  ```
-    ❯ nm -gD .local/share/nvim/site/pack/packer/start/nvim-treesitter/parser/Solidity.so
-                       w _ITM_deregisterTMCloneTable
-                       w _ITM_registerTMCloneTable
-                       w __cxa_finalize@@GLIBC_2.2.5
-                       w __gmon_start__
-      00000000000232e0 T tree_sitter_solidity
-  ```
-  To install:
-  ```
-    ❯ mkdir ~/.local/share/nvim/site/pack/packer/opt/nvim-treesitter/queries/solidity/
-    ❯ curl -L https://raw.githubusercontent.com/JoranHonig/tree-sitter-solidity/master/queries/highlights.scm -o ~/.local/share/nvim/site/pack/packer/opt/nvim-treesitter/queries/solidity/highlights.scm
-    ❯ vi ~/.local/share/nvim/site/pack/packer/opt/nvim-treesitter/queries/solidity/highlights.scm
-  ```
-  ** comment out lines 68-69
-]]
-if pcall(require, "nvim-treesitter.parsers") then
-  require "nvim-treesitter.parsers".get_parser_configs().solidity = {
-    install_info = {
-      url = "https://github.com/JoranHonig/tree-sitter-solidity",
-      files = {"src/parser.c"},
-      requires_generate_from_grammar = true,
-    },
-    filetype = 'solidity'
-  }
-end
-
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
@@ -447,7 +428,7 @@ local on_attach = function(_, bufnr)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
   vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
   vim.keymap.set('n', '<leader>so', require('telescope.builtin').lsp_document_symbols, opts)
-  vim.api.nvim_create_user_command("Format", vim.lsp.buf.formatting, {})
+  vim.api.nvim_create_user_command("Format", vim.lsp.buf.format, {})
 end
 
 -- nvim-cmp supports additional completion capabilities
