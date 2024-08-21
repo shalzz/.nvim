@@ -34,5 +34,5 @@ end)
 
 local dir = vim.fn.getenv('ZK_NOTEBOOK_DIR')..'/journal/daily'
 vim.keymap.set("n", "<leader>znn", "<Cmd>ZkNew { title = vim.fn.input('Title: ') }<CR>", {silent = false})
-vim.keymap.set("n", "<leader>zjy", string.format("<Cmd>ZkNew { dir = '%s', date = 'yesterday' }<CR>", dir), {silent = false})
+vim.keymap.set("n", "<leader>zjy", string.format("<Cmd>ZkNew { dir = '%s', format-date = 'yesterday' }<CR>", dir), {silent = false})
 vim.keymap.set("n", "<leader>zjt", string.format("<Cmd>ZkNew { dir = '%s' }<CR>", dir), {silent = false})
