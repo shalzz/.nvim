@@ -1,9 +1,9 @@
 -- Install packer
 local ensure_packer = function()
   local fn = vim.fn
-  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
   if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
     vim.cmd [[packadd packer.nvim]]
     return true
   end
@@ -13,16 +13,16 @@ end
 local packer_bootstrap = ensure_packer()
 
 require('packer').startup(function(use)
-  use 'wbthomason/packer.nvim' -- Package manager
-  use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
+  use 'wbthomason/packer.nvim'       -- Package manager
+  use 'numToStr/Comment.nvim'        -- "gc" to comment visual regions/lines
   use 'ludovicchabant/vim-gutentags' -- Automatic tags management
   use 'norcalli/nvim-colorizer.lua'  -- Color code highlighting
   -- UI to select things (files, grep results, open buffers...)
   use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   use 'ishan9299/nvim-solarized-lua' -- Solarized Color Theme
-  use 'nvim-lualine/lualine.nvim' -- Fancier statusline
-  use 'edkolev/tmuxline.vim' -- Vim tmux statusline integration
+  use 'nvim-lualine/lualine.nvim'    -- Fancier statusline
+  use 'edkolev/tmuxline.vim'         -- Vim tmux statusline integration
   -- Add git related info in the signs columns and popups
   use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
   -- Highlight, edit, and navigate code using a fast incremental parsing library
@@ -30,17 +30,17 @@ require('packer').startup(function(use)
   -- Additional textobjects for treesitter
   use 'nvim-treesitter/nvim-treesitter-textobjects'
   use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
-  use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
+  use 'hrsh7th/nvim-cmp'      -- Autocompletion plugin
   use 'hrsh7th/cmp-nvim-lsp'
   use 'saadparwaiz1/cmp_luasnip'
-  use 'L3MON4D3/LuaSnip' -- Snippets plugin
+  use 'L3MON4D3/LuaSnip'       -- Snippets plugin
   use 'andersevenrud/cmp-tmux' -- Tmux as completion source
   use 'mfussenegger/nvim-lint' -- Lints support with LSP
-   -- key bindings cheatsheet
+  -- key bindings cheatsheet
   use { 'folke/which-key.nvim',
-      config = "require('which_key')",
-      event = "VimEnter",
-      silent = true
+    config = "require('which_key')",
+    event = "VimEnter",
+    silent = true
   }
   use 'tpope/vim-sleuth' -- Auto set file indents/tabs length, respects editorconfig
   use 'mickael-menu/zk-nvim'
@@ -55,25 +55,25 @@ require('packer').startup(function(use)
 end)
 
 
-local o = vim.opt
+local o         = vim.opt
 
-o.mouse             = 'a'       -- Enable mouse mode
-o.secure            = true
-o.errorbells        = false     -- disable error bells (no beep/flash)
-o.termguicolors     = true      -- enable 24bit colors
+o.mouse         = 'a'        -- Enable mouse mode
+o.secure        = true
+o.errorbells    = false      -- disable error bells (no beep/flash)
+o.termguicolors = true       -- enable 24bit colors
 
-o.updatetime        = 250       -- decrease update time
-o.fileformat        = 'unix'    -- <nl> for EOL
-o.switchbuf         = 'useopen'
-o.encoding          = 'utf-8'
-o.fileencoding      = 'utf-8'
-o.backspace         = { 'eol', 'start', 'indent' }
-o.matchpairs        = { '(:)', '{:}', '[:]', '<:>' }
+o.updatetime    = 250        -- decrease update time
+o.fileformat    = 'unix'     -- <nl> for EOL
+o.switchbuf     = 'useopen'
+o.encoding      = 'utf-8'
+o.fileencoding  = 'utf-8'
+o.backspace     = { 'eol', 'start', 'indent' }
+o.matchpairs    = { '(:)', '{:}', '[:]', '<:>' }
 
 if tonumber(vim.fn.system("grep -c 002B36 /home/shalzz/.config/alacritty/alacritty.toml")) > 0 then
-    o.background = 'dark'
+  o.background = 'dark'
 else
-    o.background = 'light'
+  o.background = 'light'
 end
 
 -- DO NOT NEED ANY OF THIS, CRUTCH THAT POULLUTES REGISTERS
@@ -82,39 +82,39 @@ end
 -- unnamedplus = use the + register (ctrl-v paste in our term)
 -- o.clipboard         = 'unnamedplus'
 
-o.scrolloff         = 3         -- min number of lines to keep between cursor and screen edge
-o.sidescrolloff     = 5         -- min number of cols to keep between cursor and screen edge
-o.textwidth         = 78        -- max inserted text width for paste operations
-o.linespace         = 0         -- font spacing
-o.ruler             = true      -- show line,col at the cursor pos
-o.number            = true      -- show absolute line no. at the cursor pos
-o.relativenumber    = true      -- otherwise, show relative numbers in the ruler
-o.cursorline        = true      -- Show a line where the current cursor is
-o.signcolumn        = 'yes'     -- Show sign column as first column
-vim.g.colorcolumn   = 81        -- global var, mark column 81
-o.colorcolumn       = tostring(vim.g.colorcolumn)
-o.wrap              = true      -- wrap long lines
-o.breakindent       = true      -- start wrapped lines indented
-o.linebreak         = true      -- do not break words on line wrap
+o.scrolloff             = 3 -- min number of lines to keep between cursor and screen edge
+o.sidescrolloff         = 5 -- min number of cols to keep between cursor and screen edge
+o.textwidth             = 78 -- max inserted text width for paste operations
+o.linespace             = 0 -- font spacing
+o.ruler                 = true -- show line,col at the cursor pos
+o.number                = true -- show absolute line no. at the cursor pos
+o.relativenumber        = true -- otherwise, show relative numbers in the ruler
+o.cursorline            = true -- Show a line where the current cursor is
+o.signcolumn            = 'yes' -- Show sign column as first column
+vim.g.colorcolumn       = 81 -- global var, mark column 81
+o.colorcolumn           = tostring(vim.g.colorcolumn)
+o.wrap                  = true -- wrap long lines
+o.breakindent           = true -- start wrapped lines indented
+o.linebreak             = true -- do not break words on line wrap
 
 -- show menu even for one item do not auto select/insert
-o.completeopt       = { 'noinsert' , 'menuone' , 'noselect' }
-o.wildmenu          = true
-o.wildmode          = 'longest:full,full'
-o.wildoptions       = 'pum'     -- Show completion items using the pop-up-menu (pum)
-o.pumblend          = 15        -- completion menu transparency
+o.completeopt           = { 'noinsert', 'menuone', 'noselect' }
+o.wildmenu              = true
+o.wildmode              = 'longest:full,full'
+o.wildoptions           = 'pum' -- Show completion items using the pop-up-menu (pum)
+o.pumblend              = 15 -- completion menu transparency
 
-o.joinspaces        = true      -- insert spaces after '.?!' when joining lines
-o.autoindent        = true      -- copy indent from current line on newline
-o.smartindent       = true      -- add <tab> depending on syntax (C/C++)
-o.startofline       = false     -- keep cursor column on navigation
+o.joinspaces            = true -- insert spaces after '.?!' when joining lines
+o.autoindent            = true -- copy indent from current line on newline
+o.smartindent           = true -- add <tab> depending on syntax (C/C++)
+o.startofline           = false -- keep cursor column on navigation
 
-o.tabstop           = 4         -- Tab indentation levels every two columns
-o.softtabstop       = 4         -- Tab indentation when mixing tabs & spaces
-o.shiftwidth        = 4         -- Indent/outdent by two columns
-o.shiftround        = true      -- Always indent/outdent to nearest tabstop
-o.expandtab         = true      -- Convert all tabs that are typed into spaces
-o.smarttab          = true      -- Use shiftwidths at left margin, tabstops everywhere else
+o.tabstop               = 4 -- Tab indentation levels every two columns
+o.softtabstop           = 4 -- Tab indentation when mixing tabs & spaces
+o.shiftwidth            = 4 -- Indent/outdent by two columns
+o.shiftround            = true -- Always indent/outdent to nearest tabstop
+o.expandtab             = true -- Convert all tabs that are typed into spaces
+o.smarttab              = true -- Use shiftwidths at left margin, tabstops everywhere else
 
 -- c: auto-wrap comments using textwidth
 -- r: auto-insert the current comment leader after hitting <Enter>
@@ -126,61 +126,61 @@ o.smarttab          = true      -- Use shiftwidths at left margin, tabstops ever
 -- this gets overwritten by ftplugins (:verb set fo)
 -- we use autocmd to remove 'o' in '/lua/autocmd.lua'
 -- borrowed from tjdevries
-o.formatoptions = o.formatoptions
-  - 'a' -- Auto formatting is BAD.
-  - 't' -- Don't auto format my code. I got linters for that.
-  + 'c' -- In general, I like it when comments respect textwidth
-  + 'q' -- Allow formatting comments w/ gq
-  - 'o' -- O and o, don't continue comments
-  + 'r' -- But do continue when pressing enter.
-  + 'n' -- Indent past the formatlistpat, not underneath it.
-  + 'j' -- Auto-remove comments if possible.
-  - '2' -- I'm not in gradeschool anymore
+o.formatoptions         = o.formatoptions
+    - 'a'                       -- Auto formatting is BAD.
+    - 't'                       -- Don't auto format my code. I got linters for that.
+    + 'c'                       -- In general, I like it when comments respect textwidth
+    + 'q'                       -- Allow formatting comments w/ gq
+    - 'o'                       -- O and o, don't continue comments
+    + 'r'                       -- But do continue when pressing enter.
+    + 'n'                       -- Indent past the formatlistpat, not underneath it.
+    + 'j'                       -- Auto-remove comments if possible.
+    - '2'                       -- I'm not in gradeschool anymore
 
-o.splitbelow        = true      -- ':new' ':split' below current
-o.splitright        = true      -- ':vnew' ':vsplit' right of current
+o.splitbelow            = true  -- ':new' ':split' below current
+o.splitright            = true  -- ':vnew' ':vsplit' right of current
 
-o.foldenable        = true      -- enable folding
-o.foldlevelstart    = 10        -- open most folds by default
-o.foldnestmax       = 10        -- 10 nested fold max
-o.foldmethod        = 'indent'  -- fold based on indent level
-o.undofile          = true      --Save undo history
-o.undodir           = vim.fn.getenv('HOME')..'/.vimdid'
-o.autochdir         = false     -- do not change dir when opening a file
+o.foldenable            = true  -- enable folding
+o.foldlevelstart        = 10    -- open most folds by default
+o.foldnestmax           = 10    -- 10 nested fold max
+o.foldmethod            = 'indent' -- fold based on indent level
+o.undofile              = true  --Save undo history
+o.undodir               = vim.fn.getenv('HOME') .. '/.vimdid'
+o.autochdir             = false -- do not change dir when opening a file
 
-o.magic             = true      --  use 'magic' chars in search patterns
-o.hlsearch          = true      -- highlight all text matching current search pattern
-o.incsearch         = true      -- show search matches as you type
-o.ignorecase        = true      -- ignore case on search
-o.smartcase         = true      -- case sensitive when search includes uppercase
-o.showmatch         = true      -- highlight matching [{()}]
-o.inccommand        = 'nosplit' -- show search and replace in real time
-o.autoread          = true      -- reread a file if it's changed outside of vim
-o.wrapscan          = true      -- begin search from top of the file when nothing is found
+o.magic                 = true  --  use 'magic' chars in search patterns
+o.hlsearch              = true  -- highlight all text matching current search pattern
+o.incsearch             = true  -- show search matches as you type
+o.ignorecase            = true  -- ignore case on search
+o.smartcase             = true  -- case sensitive when search includes uppercase
+o.showmatch             = true  -- highlight matching [{()}]
+o.inccommand            = 'nosplit' -- show search and replace in real time
+o.autoread              = true  -- reread a file if it's changed outside of vim
+o.wrapscan              = true  -- begin search from top of the file when nothing is found
 
-o.backup            = false     -- no backup file
-o.writebackup       = false     -- do not backup file before write
-o.swapfile          = false     -- no swap file
-o.compatible        = false     -- disable vi compatiblity
-o.spell             = true      -- enable spellcheck
-o.spelllang         ='en'
-o.laststatus        = 3         -- global statusline
-o.conceallevel      = 2         -- Enable conceal by default (used mainly for markdown)
+o.backup                = false -- no backup file
+o.writebackup           = false -- do not backup file before write
+o.swapfile              = false -- no swap file
+o.compatible            = false -- disable vi compatiblity
+o.spell                 = true  -- enable spellcheck
+o.spelllang             = 'en'
+o.laststatus            = 3     -- global statusline
+o.conceallevel          = 2     -- Enable conceal by default (used mainly for markdown)
 
-vim.g.python3_host_prog  = '/usr/bin/python3'
-vim.g.solarized_italics  = 0
+vim.g.python3_host_prog = '/usr/bin/python3'
+vim.g.solarized_italics = 0
 
 --Set colorscheme
 pcall(vim.cmd, [[colorscheme solarized]])
 
 -- Disable providers we do not care a about
-vim.g.loaded_python_provider  = 0
-vim.g.loaded_ruby_provider    = 0
-vim.g.loaded_perl_provider    = 0
-vim.g.loaded_node_provider    = 0
+vim.g.loaded_python_provider = 0
+vim.g.loaded_ruby_provider   = 0
+vim.g.loaded_perl_provider   = 0
+vim.g.loaded_node_provider   = 0
 
 -- Disable some in built plugins completely
-local disabled_built_ins = {
+local disabled_built_ins     = {
   'netrw',
   'netrwPlugin',
   'netrwSettings',
@@ -200,7 +200,7 @@ local disabled_built_ins = {
   'spellfile_plugin',
   'fzf',
   -- 'matchit',
-   --'matchparen',
+  --'matchparen',
 }
 for _, plugin in pairs(disabled_built_ins) do
   vim.g['loaded_' .. plugin] = 1
@@ -239,22 +239,22 @@ require('lualine').setup {
   options = {
     icons_enabled = false,
     theme = 'powerline',
-    component_separators = { left = '', right = ''},
-    section_separators = { left = '', right = ''},
+    component_separators = { left = '', right = '' },
+    section_separators = { left = '', right = '' },
   },
   tabline = {
-    lualine_a = {'buffers'},
+    lualine_a = { 'buffers' },
     lualine_b = {},
     lualine_c = {},
     lualine_x = {},
     lualine_y = {},
-    lualine_z = {'tabs'}
+    lualine_z = { 'tabs' }
   }
 }
 
 -- Enable Comment.nvim
 require('Comment').setup()
-require'colorizer'.setup()
+require 'colorizer'.setup()
 
 -- Gitsigns
 require('gitsigns').setup {
@@ -449,7 +449,7 @@ lspconfig.ltex.setup {
   filetypes = { 'latex', 'tex', 'bib' },
   settings = {
     ltex = {
-      enabled = { 'latex', 'tex', 'bib'},
+      enabled = { 'latex', 'tex', 'bib' },
       language = 'en',
       diagnosticSeverity = 'information',
       setenceCacheSize = 2000,
@@ -458,7 +458,7 @@ lspconfig.ltex.setup {
         motherTongue = 'en',
       },
       trace = { server = 'verbose' },
-      dictionary = { ["en"] = {":~/.config/nvim/spell/en.utf-8.add"} },
+      dictionary = { ["en"] = { ":~/.config/nvim/spell/en.utf-8.add" } },
       -- disabledRules = { ['en-GB'] = { GB_SPELLING_RULE } },
       disabledRules = { ['en'] = { "EN_QUOTES" } },
       hiddenFalsePositives = {},
@@ -546,13 +546,13 @@ cmp.setup {
 }
 
 require('lint').linters_by_ft = {
-  typescript        = {'eslint'},
-  typescriptreact   = {'eslint'},
-  javascript        = {'eslint'},
-  jsx               = {'eslint'},
-  c                 = {'clangtidy', 'cppcheck'},
-  cpp               = {'clangtidy', 'cppcheck'},
-  markdown          = {'vale'}
+  typescript      = { 'eslint' },
+  typescriptreact = { 'eslint' },
+  javascript      = { 'eslint' },
+  jsx             = { 'eslint' },
+  c               = { 'clangtidy', 'cppcheck' },
+  cpp             = { 'clangtidy', 'cppcheck' },
+  markdown        = { 'vale' }
 }
 
 require('leap').set_default_keymaps()
