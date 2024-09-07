@@ -537,7 +537,7 @@ require("supermaven-nvim").setup({
     clear_suggestion = "<C-]>",
     accept_word = "<C-j>",
   },
-  ignore_filetypes = { cpp = true, eml = true },
+  ignore_filetypes = { cpp = true, eml = true , markdown = true },
 })
 
 require('lint').linters_by_ft = {
