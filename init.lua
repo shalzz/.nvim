@@ -59,6 +59,7 @@ end)
 local o         = vim.opt
 
 o.mouse         = 'a'        -- Enable mouse mode
+o.mousemodel    = 'extend'
 o.secure        = true
 o.errorbells    = false      -- disable error bells (no beep/flash)
 o.termguicolors = true       -- enable 24bit colors
@@ -437,7 +438,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 -- Enable the following language servers
-local servers = { 'clangd', 'rust_analyzer', 'tsserver', 'yamlls' }
+local servers = { 'clangd', 'rust_analyzer', 'ts_ls', 'yamlls' }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
     on_attach = on_attach,
