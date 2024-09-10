@@ -14,7 +14,6 @@ local packer_bootstrap = ensure_packer()
 
 require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'       -- Package manager
-  use 'numToStr/Comment.nvim'        -- "gc" to comment visual regions/lines
   use 'ludovicchabant/vim-gutentags' -- Automatic tags management
   -- UI to select things (files, grep results, open buffers...)
   use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
@@ -35,19 +34,21 @@ require('packer').startup(function(use)
   use 'L3MON4D3/LuaSnip'       -- Snippets plugin
   use 'andersevenrud/cmp-tmux' -- Tmux as completion source
   use 'mfussenegger/nvim-lint' -- Lints support with LSP
+  -- "gc" to comment visual regions/lines
+  use { 'numToStr/Comment.nvim' }
   -- key bindings cheatsheet
   use { 'folke/which-key.nvim',
-    config = "require('which_key')",
+    tag = "v2.1.0",
     event = "VeryLazy",
     keys = {
-    {
-      "<leader>?",
-      function()
-        require("which-key").show({ global = true })
-      end,
-      desc = "Buffer Local Keymaps (which-key)",
+      {
+        "<leader>?",
+        function()
+          require("which-key").show({ global = false })
+        end,
+        desc = "Buffer Local Keymaps (which-key)",
+      },
     },
-  },
   }
   use 'tpope/vim-sleuth' -- Auto set file indents/tabs length, respects editorconfig
   use 'mickael-menu/zk-nvim'

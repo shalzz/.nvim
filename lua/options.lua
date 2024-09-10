@@ -172,6 +172,6 @@ vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = tr
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- Debug Mode
-vim.g.debug_load_plugins = 1
+-- vim.g.debug_load_plugins = 1
 
 -- vim: ts=2 sts=2 sw=2 et
