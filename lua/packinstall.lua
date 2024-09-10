@@ -16,7 +16,6 @@ require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'       -- Package manager
   use 'numToStr/Comment.nvim'        -- "gc" to comment visual regions/lines
   use 'ludovicchabant/vim-gutentags' -- Automatic tags management
-  use 'norcalli/nvim-colorizer.lua'  -- Color code highlighting
   -- UI to select things (files, grep results, open buffers...)
   use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
@@ -53,7 +52,10 @@ require('packer').startup(function(use)
   use 'tpope/vim-sleuth' -- Auto set file indents/tabs length, respects editorconfig
   use 'mickael-menu/zk-nvim'
   use 'tpope/vim-repeat'
-  use 'ggandor/leap.nvim'
+  -- Motion plugin based on two-character pattern
+  -- use { 'ggandor/leap.nvim', setup = "require('leap').create_default_mappings()" }
+
+  -- Co-pilot AI
   use 'supermaven-inc/supermaven-nvim'
 
   -- Automatically set up your configuration after cloning packer.nvim
@@ -86,7 +88,6 @@ require('lualine').setup {
 
 -- Enable Comment.nvim
 require('Comment').setup()
-require 'colorizer'.setup()
 
 -- Gitsigns
 require('gitsigns').setup {
@@ -380,7 +381,5 @@ require('lint').linters_by_ft = {
   cpp             = { 'clangtidy', 'cppcheck' },
   markdown        = { 'vale' }
 }
-
-require('leap').set_default_keymaps()
 
 require('zk-setup')
