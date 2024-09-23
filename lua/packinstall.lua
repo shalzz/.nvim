@@ -56,9 +56,6 @@ require('packer').startup(function(use)
   -- Motion plugin based on two-character pattern
   -- use { 'ggandor/leap.nvim', setup = "require('leap').create_default_mappings()" }
 
-  -- Co-pilot AI
-  use 'supermaven-inc/supermaven-nvim'
-
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
@@ -362,16 +359,6 @@ cmp.setup {
     -- { name = "supermaven" },
   },
 }
-
--- supermaven setup
-require("supermaven-nvim").setup({
-  keymaps = {
-    accept_suggestion = "<Tab>",
-    clear_suggestion = "<C-]>",
-    accept_word = "<C-j>",
-  },
-  ignore_filetypes = { cpp = true, mail = true , markdown = true },
-})
 
 require('lint').linters_by_ft = {
   typescript      = { 'eslint' },
