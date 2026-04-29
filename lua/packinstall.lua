@@ -26,7 +26,7 @@ require('packer').startup(function(use)
   -- Highlight, edit, and navigate code using a fast incremental parsing library
   use 'nvim-treesitter/nvim-treesitter'
   -- Additional textobjects for treesitter
-  use 'nvim-treesitter/nvim-treesitter-textobjects'
+  use { 'nvim-treesitter/nvim-treesitter-textobjects', branch = 'main'}
   use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
   use 'hrsh7th/nvim-cmp'      -- Autocompletion plugin
   use 'hrsh7th/cmp-nvim-lsp'
@@ -148,7 +148,7 @@ vim.keymap.set('n', '<leader>fzt', "<Cmd>ZkTags<CR>")
 
 -- Treesitter configuration
 -- Parsers must be installed manually via :TSInstall
-require('nvim-treesitter.configs').setup {
+require('nvim-treesitter').setup {
   ensure_installed = {
     "bash",
     "c",
@@ -241,7 +241,6 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
 
 -- LSP settings
-local lspconfig = require 'lspconfig'
 local on_attach = function(_, bufnr)
   local opts = { buffer = bufnr }
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
@@ -279,14 +278,15 @@ capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 -- Enable the following language servers
 local servers = { 'clangd', 'rust_analyzer', 'ts_ls', 'yamlls' }
 for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
+  vim.lsp.enable(lsp)
+  vim.lsp.config(lsp, {
     on_attach = on_attach,
     capabilities = capabilities,
-  }
+  })
 end
 
 -- Setup ltex
-lspconfig.ltex.setup {
+vim.lsp.config("ltex", {
   filetypes = { 'latex', 'tex', 'bib' },
   settings = {
     ltex = {
@@ -305,7 +305,7 @@ lspconfig.ltex.setup {
       hiddenFalsePositives = {},
     },
   },
-}
+})
 
 -- Example custom server
 -- Make runtime files discoverable to the server
@@ -314,7 +314,7 @@ table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
 
-lspconfig.lua_ls.setup {
+vim.lsp.config("lua_ls", {
   on_attach = on_attach,
   capabilities = capabilities,
   settings = {
@@ -339,7 +339,7 @@ lspconfig.lua_ls.setup {
       },
     },
   },
-}
+})
 
 -- luasnip setup
 local luasnip = require 'luasnip'
